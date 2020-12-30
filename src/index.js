@@ -18,6 +18,8 @@ ReactDOM.render(
 reportWebVitals();
 
 
+/*
+
 var OFFSET_MARGIN = 2;
 
 var supports3DTransforms = 'WebkitPerspective' in document.body.style ||
@@ -26,9 +28,7 @@ var supports3DTransforms = 'WebkitPerspective' in document.body.style ||
     'OPerspective' in document.body.style ||
     'perspective' in document.body.style;
 
-/**
- * Binds events for all elements with the class 'kort'.
- */
+
 var kortBind = function() {
 
     // Properties that are read from the DOM when the user hovers
@@ -145,3 +145,5 @@ var kortBind = function() {
 }
 
 kortBind();
+
+*/

@@ -1,24 +1,19 @@
 // import logo from './logo.svg';
 import './App.css';
+import Card from './card/Card';
 
 function App() {
+
+  const colors = ["red", "yellow", "green", "blue"];
+  var translateX = 0;
+  const cards = colors.map((value) => {
+    translateX += 100;
+    return <Card translateX={translateX} color={value} />
+  });
+
   return (
     <div className="App">
-      Hello
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      {cards}
     </div>
   );
 }
