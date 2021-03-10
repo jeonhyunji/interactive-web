@@ -15,22 +15,15 @@ function Card({ color, angle, circleX, circleY, radius }) {
     const rotateDeg = 90 - angle;
 
     // const scaleValue = (focus) ? 1.1 : 1;
-    const scaleValue = 1;
+    const scaleValue = ( 85 < angle%360 && angle%360 < 95) ? 1.05 : 1;
     const transformValue = "translate3d(" + translateX + "px, "
         + translateY + "px, 0px) rotate(" + rotateDeg + "deg) scale("
         + scaleValue + ")";
 
-    // const onMouseOver = () => {
-    //     setFocus(true);
-    // };
-
-    // const onMouseOut = () => {
-    //     setFocus(false);
-    // };
-
     return (
         <div className="card-items"
             style={{
+                position: "fixed",
                 backgroundColor: color, 
                 transform: transformValue,
                 // zIndex: (focus) ? 100 : 0

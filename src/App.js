@@ -1,18 +1,33 @@
 // import logo from './logo.svg';
 import './App.css';
 import Card from './card/Card';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const radius = 400;
-const circleX = 100 + radius;
-const circleY = 200 + radius;
-const angle = 20;
+const radius = 800;
+const angle = 12;
 
 function App() {
 	const [moveAngle, setMoveAngle] = useState(0);
 	const [isMovable, setIsMovable] = useState(false);
 	const [fromXY, setFromXY] = useState({x: 0, y: 0});
+	const [circleXY, setCircleXY] = useState({
+		x: (window.innerWidth / 2), 
+		y: (window.outerHeight + window.outerHeight/5*2)
+	});
+	const [scale, setScale] = useState(1);
 
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setCircleXY({
+				x: (window.innerWidth / 2), 
+				y: (window.outerHeight + (window.outerHeight/5*2))
+			});
+			console.log("x: " + window.innerWidth + ", y: " + window.innerHeight);
+			var scale = window.outerHeight/window.screen.height;
+			setScale(scale);
+		});
+	}, []);
+	
 	const n = Math.floor(360 / angle);
 	const cards = [];
 	var cardAngle = 90;
@@ -28,7 +43,7 @@ function App() {
 				color = "yellow";
 		}
 		cards.push(
-			<Card color={color} angle={cardAngle + moveAngle} circleX={circleX} circleY={circleY} radius={radius}/>
+			<Card color={color} angle={cardAngle + moveAngle} circleX={circleXY.x} circleY={circleXY.y} radius={radius}/>
 		);
 		cardAngle += angle;
 	}
@@ -46,16 +61,10 @@ function App() {
 			var toX = ev.clientX;
 			var toY = ev.clientY;
 
-			var fromAngle = getAngle(fromXY.x, fromXY.y);
-			var toAngle = getAngle(toX, toY);
+			var fromAngle = radiansToDegrees(Math.atan2(circleXY.y - fromXY.y, fromXY.x - circleXY.x));
+			var toAngle = radiansToDegrees(Math.atan2(circleXY.y - toY, toX - circleXY.x));
 
-			var move = 0;
-			// move right
-			if (toAngle > fromAngle) {
-				move = toAngle - fromAngle;
-			} else { // move left
-				move = - (fromAngle - toAngle);
-			}
+			var move = toAngle - fromAngle;
 			setMoveAngle(moveAngle + move);
 			setFromXY({
 				x: ev.clientX,
@@ -68,23 +77,15 @@ function App() {
 		setIsMovable(false);
 	};
 
-
 	return (
-		<div className="App" onMouseDown={(ev) => onMouseDown(ev)} 
+		<div className="App" 
+			style={{transform: "scale(" + scale + ")", position:"fixed"}}
+			onMouseDown={(ev) => onMouseDown(ev)} 
 			onMouseMove={(ev) => onMouseMove(ev)} 
 			onMouseUp={() => onMouseUp()}>
-			{/* <div>move: {moveAngle}</div> */}
-			{/* <div className="test-circle"></div> */}
-			{/* <div className="center"></div> */}
-			<div style={{display: 'inline-block', width: "1000px", height: "1000px", marginTop: "200px"}}>
-				{cards}
-			</div>
+			{cards}
 		</div>
 	);
-}
-
-function getAngle(x, y) {
-	return radiansToDegrees(Math.atan2(circleY - y, x - circleX));
 }
 
 function radiansToDegrees(radians) {
