@@ -6,7 +6,7 @@
 
 - [**Getting Started**](#getting-started)
 
-## Getting Started
-- [Run in Gitpod](https://gitpod.io/#https://github.com/jeonhyunji/interactive-web)
+## Getting Started 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/jeonhyunji/interactive-web)
 - react app
   - `yarn start`
