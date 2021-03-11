@@ -4,6 +4,8 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/jeonhyunji/interactive-web)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jeonhyunji/interactive-web)
 
+<img src="https://raw.githubusercontent.com/jeonhyunji/interactive-web/master/resources/cardRotation.gif?sanitize=true" width="800"/>
+
 - [**Getting Started**](#getting-started)
 
 ## Getting Started 
