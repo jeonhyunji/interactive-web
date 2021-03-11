@@ -38,3 +38,22 @@
     transform: rotate(360deg);
   }
 }
+
+.Text-logo {
+  font-size: 72px;
+  /* background: -webkit-linear-gradient(to right, #CC95C0, #DBD4B4, #7AA1D2); */
+  background: linear-gradient(to right, #CC95C0, #DBD4B4, #7AA1D2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {  
+  -moz-user-select: none;  
+  -ms-user-select: none;  
+  -webkit-user-select: none;  
+  /* this will work for QtWebKit in future */  
+  -webkit-user-drag: none;  
+ }  

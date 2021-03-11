@@ -5,32 +5,26 @@ const cardWidth = 200;
 const cardHeight = 300;
 
 function Card({ color, angle, circleX, circleY, radius }) {
-    // const [focus, setFocus] = useState(false);
-
     const posX = Math.floor(Math.cos(degreesToRadians(angle)) * radius);
     const posY = - Math.floor(Math.sin(degreesToRadians(angle)) * radius);
     const translateX = circleX + posX - (cardWidth / 2);
     const translateY = circleY + posY - (cardHeight / 2);
-    // const rotateDeg = - (angle - 90);
     const rotateDeg = 90 - angle;
 
-    // const scaleValue = (focus) ? 1.1 : 1;
     const scaleValue = ( 85 < angle%360 && angle%360 < 95) ? 1.05 : 1;
     const transformValue = "translate3d(" + translateX + "px, "
         + translateY + "px, 0px) rotate(" + rotateDeg + "deg) scale("
         + scaleValue + ")";
-
     return (
         <div className="card-items"
             style={{
                 position: "fixed",
                 backgroundColor: color, 
                 transform: transformValue,
-                // zIndex: (focus) ? 100 : 0
+                border: "1px solid",
+                borderColor: color,
                 zIndex: ( 80 < angle%360 && angle%360 < 100) ? 100 : 0  
             }}>
-            {/* {angle} */}
-            {/* onMouseOver={() => onMouseOver()} onMouseOut={() => onMouseOut()}> */}
         </div>
     );
 }

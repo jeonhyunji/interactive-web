@@ -1,7 +1,7 @@
-// import logo from './logo.svg';
 import './App.css';
 import Card from './card/Card';
 import { useState, useEffect } from 'react';
+import * as fastColors from '@microsoft/fast-colors';
 
 const radius = 800;
 const angle = 12;
@@ -11,16 +11,16 @@ function App() {
 	const [isMovable, setIsMovable] = useState(false);
 	const [fromXY, setFromXY] = useState({x: 0, y: 0});
 	const [circleXY, setCircleXY] = useState({
-		x: (window.innerWidth / 2), 
-		y: (window.outerHeight + window.outerHeight/5*2)
+        x: (window.innerWidth / 2), 
+		y: (window.outerHeight + window.outerHeight/5)
 	});
 	const [scale, setScale] = useState(1);
 
 	useEffect(() => {
 		window.addEventListener('resize', () => {
 			setCircleXY({
-				x: (window.innerWidth / 2), 
-				y: (window.outerHeight + (window.outerHeight/5*2))
+                x: (window.innerWidth / 2),
+				y: (window.outerHeight + (window.outerHeight/5))
 			});
 			console.log("x: " + window.innerWidth + ", y: " + window.innerHeight);
 			var scale = window.outerHeight/window.screen.height;
@@ -30,18 +30,11 @@ function App() {
 	
 	const n = Math.floor(360 / angle);
 	const cards = [];
-	var cardAngle = 90;
+    var cardAngle = 90;
+    var colors = getCardColors(n);
+
 	for (var i = 0; i < n; i++) {
-		var color;
-		if (i === 0) {
-			color = "red";
-		} else {
-			color = "green";
-			if (i % 2 === 1)
-				color = "green";
-			else
-				color = "yellow";
-		}
+        var color = colors[i];
 		cards.push(
 			<Card color={color} angle={cardAngle + moveAngle} circleX={circleXY.x} circleY={circleXY.y} radius={radius}/>
 		);
@@ -83,6 +76,9 @@ function App() {
 			onMouseDown={(ev) => onMouseDown(ev)} 
 			onMouseMove={(ev) => onMouseMove(ev)} 
 			onMouseUp={() => onMouseUp()}>
+            <h1 align="center" className="Text-logo">
+                Rotate the card
+            </h1>
 			{cards}
 		</div>
 	);
@@ -91,6 +87,32 @@ function App() {
 function radiansToDegrees(radians) {
 	var pi = Math.PI;
 	return radians * (180 / pi);
+}
+
+function getCardColors(n) {
+    const color1 = fastColors.parseColorHexRGB("#CC95C0");
+    const color2 = fastColors.parseColorHexRGB("#DBD4B4"); 
+    const color3 = fastColors.parseColorHexRGB("#7AA1D2");
+
+    var n1 = n/2;
+    var n2 = n-n1;
+    var colors = getGradientColors(n1, color1, color2);
+    colors = colors.concat(getGradientColors(n2, color2, color3));
+
+    return colors;
+}
+
+function getGradientColors(num, left, right) {
+    var colors = [];
+
+    for (var i = 0; i < num; i++) {
+        var position = 1/num * i;
+        var colorRgb = fastColors.interpolateRGB(position, left, right);
+        var hexStr = colorRgb.toStringHexRGB();
+        colors.push(hexStr);
+    }
+
+    return colors;
 }
 
 export default App;
