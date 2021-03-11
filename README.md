@@ -1,12 +1,16 @@
-# interactive-web
-웹페이지가 반응해
+<p align="center">
+  <h1 align="center">interactive-web</h1>
+  <p>
+    카드를 돌려 돌려
+  </p>
+ 
+  [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/jeonhyunji/interactive-web)
+  ![GitHub last commit](https://img.shields.io/github/last-commit/jeonhyunji/interactive-web)
+</p>
 
-## Idea
-- [x] 공통 블로그(포트폴리오) OK?
-- [x] https://www.youtube.com/watch?v=cpEeqACsF_Q
+- [**Getting Started**](#getting-started)
 
-## 공통 주제(4개 다 하고, 순서를 정해서 먼저 한다)
-1. 돌아가는 카드
-2. 이두희
-3. 양(현지)
-4. surf forecast
+## Getting Started
+- [Run in Gitpod](https://gitpod.io/#https://github.com/jeonhyunji/interactive-web)
+- react app
+  - `yarn start`
